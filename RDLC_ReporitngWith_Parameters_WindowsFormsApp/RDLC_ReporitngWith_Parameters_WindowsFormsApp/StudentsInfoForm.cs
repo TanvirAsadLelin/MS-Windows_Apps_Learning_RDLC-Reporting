@@ -38,5 +38,48 @@ namespace RDLC_ReporitngWith_Parameters_WindowsFormsApp
 
             this.reportViewerStudentsInfo.RefreshReport();
         }
+
+        private void btnReset_Click(object sender, EventArgs e)
+        {
+            this.studentsInfo_TblTableAdapter.Fill(this.studentsInfoDataSet.StudentsInfo_Tbl);
+
+            this.reportViewerStudentsInfo.RefreshReport();
+
+            textBoxName.Clear();
+            comboBoxGender.SelectedItem = null;
+        }
+
+        private void btnBoth_Click(object sender, EventArgs e)
+        {
+            if(comboBoxGender.SelectedItem != null && textBoxName.Text != "")
+            {
+                this.studentsInfo_TblTableAdapter.FillByGenderName(this.studentsInfoDataSet.StudentsInfo_Tbl, textBoxName.Text, comboBoxGender.SelectedItem.ToString());
+
+                this.reportViewerStudentsInfo.RefreshReport();
+            }
+            else if (comboBoxGender.SelectedItem != null)
+            {
+                this.studentsInfo_TblTableAdapter.FillByGender(this.studentsInfoDataSet.StudentsInfo_Tbl, comboBoxGender.SelectedItem.ToString());
+
+                this.reportViewerStudentsInfo.RefreshReport();
+            }
+            else if (textBoxName.Text != "")
+            {
+                this.studentsInfo_TblTableAdapter.FillByName(this.studentsInfoDataSet.StudentsInfo_Tbl, textBoxName.Text);
+
+                this.reportViewerStudentsInfo.RefreshReport();
+            }
+            else
+            {
+                MessageBox.Show("Please select gender or fill name for load data", "Alert", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+        }
+
+        private void btnLoadById_Click(object sender, EventArgs e)
+        {
+            this.studentsInfo_TblTableAdapter.FillById(this.studentsInfoDataSet.StudentsInfo_Tbl, int.Parse(textBoxId.Text));
+
+            this.reportViewerStudentsInfo.RefreshReport();
+        }
     }
 }

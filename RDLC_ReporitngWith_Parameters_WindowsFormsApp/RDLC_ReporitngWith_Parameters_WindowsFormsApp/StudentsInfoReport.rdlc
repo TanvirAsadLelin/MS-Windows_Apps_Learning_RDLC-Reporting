@@ -59,7 +59,6 @@
                         <PaddingBottom>2pt</PaddingBottom>
                       </Style>
                     </Textbox>
-                    <rd:Selected>true</rd:Selected>
                   </CellContents>
                 </TablixCell>
                 <TablixCell>
@@ -411,6 +410,7 @@
             </TablixMember>
           </TablixMembers>
         </TablixRowHierarchy>
+        <NoRowsMessage>No rows found</NoRowsMessage>
         <DataSetName>StudentsInfoDataSet</DataSetName>
         <Top>0.16333in</Top>
         <Left>0.18833in</Left>
